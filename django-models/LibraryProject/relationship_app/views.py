@@ -10,3 +10,9 @@ class DisplayLibraryView(DetailView):
     model = Library
     template_name = 'library_detail.html'
     context_object_name = 'library' 
+
+class SignUpView():
+    template_name = './templates/relationship_app/signup.html'
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
