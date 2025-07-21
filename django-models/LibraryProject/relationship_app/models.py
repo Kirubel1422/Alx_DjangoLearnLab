@@ -15,21 +15,14 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='author')
     
     def __str__(self):
-        return f"{self.title} by {self.author}"  
+        return f"{self.title} by {self.author}"
 
-#Extending Book Model with Custom Permissions
-    class Meta(models.Model):
-        Permissions_Choices =(
-            ('can_add_book', 'can_add_book'),
-            ('can_change_book', 'can_change_book'),
-            ('can_delete_book', 'can_delete_book'),
-
+    class Meta:
+        permissions = (
+            ('can_add_book', 'Can add book'),
+            ('can_change_book', 'Can change book'),
+            ('can_delete_book', 'Can delete book'),
         )
-    permissions = models.CharField(max_length=50,  choices='Permissions_Choices')
-    meta = models.TextField()
-    
-    def __str__(self):
-        return f'{self.user.username} - {self.permissions}'
 
 class Library(models.Model):
     name = models.CharField(max_length=200)
